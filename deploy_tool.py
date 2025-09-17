@@ -276,7 +276,10 @@ class DeployTool:
             archive_path = os.path.join(temp_dir, archive_name)
 
             with tarfile.open(archive_path, "w:gz") as tar:
-                tar.add(source_path, arcname=source_name)
+                # Add contents of the directory, not the directory itself
+                for item in os.listdir(source_path):
+                    item_path = os.path.join(source_path, item)
+                    tar.add(item_path, arcname=item)
 
         elif compression_format == 'zip':
             archive_name = f"{source_name}.zip"
@@ -286,7 +289,8 @@ class DeployTool:
                 for root, dirs, files in os.walk(source_path):
                     for file in files:
                         file_path = os.path.join(root, file)
-                        arcname = os.path.relpath(file_path, os.path.dirname(source_path))
+                        # Make arcname relative to source_path, not its parent
+                        arcname = os.path.relpath(file_path, source_path)
                         zipf.write(file_path, arcname)
         else:
             raise ValueError(f"Unsupported compression format: {compression_format}")
