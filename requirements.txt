@@ -1,4 +1,8 @@
-paramiko>=2.12.0
-scp>=0.14.5
-tqdm>=4.65.0
+# Deploy Tool - Python Requirements
+# Install with: pip3 install -r requirements.txt
+
+paramiko>=3.0.0
+scp>=0.14.0
 PyYAML>=6.0
+tqdm>=4.64.0
+PySocks>=1.7.1
