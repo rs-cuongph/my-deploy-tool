@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(pip install:*)",
+      "Read(//c/Users/rs-cuongph/.ssh/**)"
+    ],
+    "additionalDirectories": [
+      "\\orico\\"
+    ]
+  }
+}

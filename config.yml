@@ -1,0 +1,29 @@
+# Production Environment Configuration
+paths:
+  local: "/path/to/local/source"
+  remote: "/path/to/remote/destination"
+
+ssh:
+  hostname: "prod-server.com"
+  port: 22
+  username: "prod-user"
+  password: null  # Use key-based auth if possible
+  key_file: "~/.ssh/id_rsa_prod"
+  proxy:
+    hostname: null  # "prod-proxy-server.com"
+    port: null      # 3128
+    username: null
+    password: null
+
+deploy:
+  compression: true
+  compression_format: "tar.gz"  # tar.gz, zip
+  checksum_verify: true
+  retry_attempts: 5  # More retries for production
+  retry_delay: 10  # Longer delay for production
+  chunk_size: 16384  # Larger chunks for production
+  delete_before_sync: false  # Delete remote folder before sync (DANGEROUS in production)
+
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: "deploy_prod.log"
